@@ -3,7 +3,8 @@ import { PublicShell } from "@/components/public/PublicShell";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/public/SectionHeading";
 import { PropertyShowcaseCard } from "@/components/public/PropertyShowcaseCard";
-import { Logomark } from "@/components/brand/Logomark";
+import { HeroShowcase } from "@/components/public/HeroShowcase";
+import { QuickSearch } from "@/components/public/QuickSearch";
 import { buttonClasses } from "@/components/ui/Button";
 import { Icon } from "@/components/icons";
 import {
@@ -15,30 +16,30 @@ import { KAWASAN_OPTIONS } from "@/lib/constants";
 const VALUE_PROPS = [
   {
     icon: Icon.Sparkle,
-    title: "Kurasi Properti Premium",
-    desc: "Setiap unit diseleksi dengan standar tinggi—legalitas jelas, kondisi prima, dan nilai investasi yang terukur.",
+    title: "Properti Terkurasi",
+    desc: "Setiap unit diseleksi dengan standar tinggi—legalitas jelas, kondisi prima, nilai investasi terukur.",
   },
   {
     icon: Icon.MapPin,
-    title: "Lokasi Paling Diminati",
-    desc: "Portofolio kami berada di kawasan strategis dengan akses, fasilitas, dan prospek pertumbuhan terbaik.",
+    title: "Kawasan Strategis",
+    desc: "Portofolio kami berada di lokasi dengan akses, fasilitas, dan prospek pertumbuhan terbaik.",
   },
   {
     icon: Icon.ShieldCheck,
-    title: "Proses Transparan & Aman",
-    desc: "Data properti akurat dan terdokumentasi. Tidak ada biaya tersembunyi, tidak ada kejutan di tengah jalan.",
+    title: "Legalitas Terverifikasi",
+    desc: "Dokumen dan status setiap properti diperiksa saksama. Tanpa biaya tersembunyi.",
   },
   {
     icon: Icon.Handshake,
-    title: "Pendampingan Profesional",
-    desc: "Agen berpengalaman mendampingi Anda dari pencarian, negosiasi, hingga serah terima dengan tenang.",
+    title: "Dibantu Agent Profesional",
+    desc: "Agen berpengalaman mendampingi Anda dari pencarian hingga serah terima dengan tenang.",
   },
 ];
 
-const STATS = [
-  { value: "60+", label: "Properti Aktif" },
-  { value: "10", label: "Kawasan Premium" },
-  { value: "100%", label: "Legalitas Terverifikasi" },
+const TRUST = [
+  { icon: Icon.Building, value: "60+", label: "Properti Aktif" },
+  { icon: Icon.MapPin, value: "10", label: "Kawasan Premium" },
+  { icon: Icon.ShieldCheck, value: "100%", label: "Legalitas Terverifikasi" },
 ];
 
 export default function LandingPage() {
@@ -51,74 +52,82 @@ export default function LandingPage() {
       <section className="grain relative isolate overflow-hidden bg-ink text-paper">
         <div className="hero-grid absolute inset-0" aria-hidden />
         <div
-          className="absolute -right-24 top-1/2 hidden -translate-y-1/2 opacity-[0.07] lg:block"
-          aria-hidden
-        >
-          <Logomark tone="light" height={520} />
-        </div>
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent"
+          className="pointer-events-none absolute -left-40 top-0 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-3xl"
           aria-hidden
         />
 
-        <Container className="relative pb-24 pt-36 sm:pt-44 lg:pb-32">
-          <div className="max-w-3xl">
-            <div className="animate-fade-up mb-6 flex items-center gap-3">
-              <span className="gold-rule-left" aria-hidden />
-              <span className="eyebrow eyebrow-light">
-                Properti Premium · Medan &amp; Sekitarnya
-              </span>
+        <Container size="wide" className="relative pb-28 pt-32 sm:pt-36 lg:pb-36">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            {/* Copy */}
+            <div>
+              <div className="animate-fade-up mb-6 flex items-center gap-3">
+                <span className="gold-rule-left" aria-hidden />
+                <span className="eyebrow eyebrow-light">
+                  Marketplace Properti Premium · Medan
+                </span>
+              </div>
+
+              <h1 className="animate-fade-up delay-1 font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl lg:text-[4.2rem]">
+                Temukan Properti{" "}
+                <span className="text-gold-gradient">Premium</span> Pilihan Anda.
+              </h1>
+
+              <p className="animate-fade-up delay-2 mt-6 max-w-xl text-lg leading-relaxed text-paper/70">
+                Jelajahi koleksi ruko dan villa eksklusif di kawasan paling
+                diminati—dikurasi dengan teliti, lengkap dengan harga
+                transparan dan pendampingan agen profesional.
+              </p>
+
+              <div className="animate-fade-up delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
+                <Link href="/properti" className={buttonClasses("primary", "lg")}>
+                  Lihat Properti
+                  <Icon.ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/kontak"
+                  className={buttonClasses("outline-light", "lg")}
+                >
+                  Hubungi Kami
+                </Link>
+              </div>
+
+              <dl className="animate-fade-up delay-4 mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-paper/10 pt-8">
+                {TRUST.map((s) => (
+                  <div key={s.label}>
+                    <dt className="font-display text-3xl text-gold sm:text-4xl">
+                      {s.value}
+                    </dt>
+                    <dd className="mt-1 text-xs uppercase tracking-wider text-paper/55">
+                      {s.label}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </div>
 
-            <h1 className="animate-fade-up delay-1 font-display text-5xl leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
-              Properti Premium untuk Setiap{" "}
-              <span className="text-gold-gradient">Babak Penting</span> Hidup
-              Anda.
-            </h1>
-
-            <p className="animate-fade-up delay-2 mt-7 max-w-xl text-lg leading-relaxed text-paper/70">
-              Prime Property menghadirkan koleksi ruko dan villa eksklusif di
-              kawasan paling diminati—dikurasi dengan teliti dan dilayani agen
-              profesional yang menjaga kepercayaan Anda.
-            </p>
-
-            <div className="animate-fade-up delay-3 mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link href="#properti" className={buttonClasses("primary", "lg")}>
-                Lihat Properti
-                <Icon.ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/kontak"
-                className={buttonClasses("outline-light", "lg")}
-              >
-                Hubungi Kami
-              </Link>
+            {/* Visual */}
+            <div className="animate-fade-up delay-2 lg:pl-6">
+              {featured.length >= 2 && (
+                <HeroShowcase primary={featured[0]} secondary={featured[1]} />
+              )}
             </div>
-
-            <dl className="animate-fade-up delay-4 mt-16 grid max-w-lg grid-cols-3 gap-8 border-t border-paper/10 pt-8">
-              {STATS.map((s) => (
-                <div key={s.label}>
-                  <dt className="font-display text-3xl text-gold sm:text-4xl">
-                    {s.value}
-                  </dt>
-                  <dd className="mt-1 text-xs uppercase tracking-wider text-paper/55">
-                    {s.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </Container>
       </section>
 
+      {/* ===================== QUICK SEARCH (overlap) ================= */}
+      <Container size="wide" className="relative z-10 -mt-12 sm:-mt-14">
+        <QuickSearch />
+      </Container>
+
       {/* ===================== KAWASAN TRUST STRIP ===================== */}
-      <section className="border-b border-line bg-mist/60">
-        <Container className="flex flex-wrap items-center gap-x-8 gap-y-3 py-6">
-          <span className="text-xs font-medium uppercase tracking-widest text-muted-soft">
-            Dipercaya di kawasan
-          </span>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            {KAWASAN_OPTIONS.slice(0, 7).map((k) => (
+      <section className="bg-paper">
+        <Container size="wide" className="py-12">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            <span className="text-xs font-medium uppercase tracking-widest text-muted-soft">
+              Dipercaya di kawasan
+            </span>
+            {KAWASAN_OPTIONS.slice(0, 8).map((k) => (
               <span key={k} className="text-sm font-medium text-ink-soft">
                 {k}
               </span>
@@ -128,37 +137,38 @@ export default function LandingPage() {
       </section>
 
       {/* ====================== FEATURED PROPERTIES ===================== */}
-      <section id="properti" className="scroll-mt-24 bg-paper py-20 lg:py-28">
-        <Container>
+      <section id="properti" className="scroll-mt-24 bg-mist/40 py-20 lg:py-28">
+        <Container size="wide">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <SectionHeading
               eyebrow="Properti Unggulan"
               title="Koleksi pilihan yang siap Anda miliki"
-              description="Cuplikan portofolio terbaik kami. Hubungi tim untuk ketersediaan terkini dan penawaran lengkap."
+              description="Cuplikan portofolio terbaik kami—klik untuk melihat detail dan informasi harga lengkap."
             />
-            <p className="hidden text-sm text-muted sm:block">
-              {active} properti aktif dalam katalog
-            </p>
+            <Link
+              href="/properti"
+              className={buttonClasses("outline", "md") + " shrink-0"}
+            >
+              Lihat Semua ({active})
+              <Icon.ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((property) => (
-              <PropertyShowcaseCard key={property.id} property={property} />
+            {featured.map((property, i) => (
+              <PropertyShowcaseCard
+                key={property.id}
+                property={property}
+                eager={i < 3}
+              />
             ))}
-          </div>
-
-          <div className="mt-12 flex justify-center">
-            <Link href="/kontak" className={buttonClasses("dark", "md")}>
-              Konsultasikan Kebutuhan Anda
-              <Icon.ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
         </Container>
       </section>
 
       {/* ======================= WHY PRIME PROPERTY ==================== */}
-      <section className="bg-mist py-20 lg:py-28">
-        <Container>
+      <section className="bg-paper py-20 lg:py-28">
+        <Container size="wide">
           <SectionHeading
             align="center"
             eyebrow="Mengapa Prime Property"
@@ -166,7 +176,7 @@ export default function LandingPage() {
             description="Empat alasan klien memilih kami untuk keputusan properti paling penting mereka."
             className="mb-14"
           />
-          <div className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {VALUE_PROPS.map((vp, i) => {
               const IconCmp = vp.icon;
               return (
@@ -175,7 +185,7 @@ export default function LandingPage() {
                   className="group flex flex-col bg-paper p-7 transition-colors duration-300 hover:bg-gold-wash/50"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-ink text-gold transition-transform duration-500 group-hover:-translate-y-0.5">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-gold transition-transform duration-500 group-hover:-translate-y-0.5">
                       <IconCmp className="h-6 w-6" />
                     </span>
                     <span className="font-display text-3xl text-line-strong">
@@ -195,32 +205,85 @@ export default function LandingPage() {
         </Container>
       </section>
 
+      {/* ========================= ABOUT PREVIEW ====================== */}
+      <section className="bg-ink py-20 text-paper lg:py-28">
+        <Container size="wide">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="relative overflow-hidden rounded-2xl border border-paper/10">
+              <HeroAbout />
+            </div>
+            <div>
+              <div className="mb-5 flex items-center gap-3">
+                <span className="gold-rule-left" aria-hidden />
+                <span className="eyebrow eyebrow-light">Tentang Kami</span>
+              </div>
+              <h2 className="font-display text-3xl leading-tight sm:text-4xl">
+                Agensi properti yang dibangun di atas kepercayaan.
+              </h2>
+              <p className="mt-5 max-w-lg leading-relaxed text-paper/65">
+                Prime Property memadukan pemahaman pasar yang mendalam dengan
+                pelayanan personal. Kami menempatkan ketelitian data dan
+                transparansi sebagai fondasi—agar setiap keputusan properti Anda
+                diambil dengan tenang dan percaya diri.
+              </p>
+              <Link
+                href="/tentang-kami"
+                className={buttonClasses("outline-light", "md") + " mt-8"}
+              >
+                Pelajari Lebih Lanjut
+                <Icon.ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* ============================ CTA BAND ========================= */}
-      <section className="relative isolate overflow-hidden bg-ink text-paper">
-        <div className="hero-grid absolute inset-0 opacity-60" aria-hidden />
-        <Container className="relative py-20 text-center lg:py-24">
-          <SectionHeading
-            align="center"
-            tone="light"
-            eyebrow="Langkah Berikutnya"
-            title="Siap menemukan properti yang tepat?"
-            description="Tim Prime Property siap membantu Anda menemukan ruko atau villa yang sesuai kebutuhan dan anggaran."
-            className="mb-9"
-          />
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/kontak" className={buttonClasses("primary", "lg")}>
-              Hubungi Kami
-              <Icon.ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/tentang-kami"
-              className={buttonClasses("outline-light", "lg")}
-            >
-              Tentang Prime Property
-            </Link>
+      <section className="bg-paper">
+        <Container size="wide" className="py-16 lg:py-20">
+          <div className="grain relative isolate overflow-hidden rounded-3xl bg-ink px-8 py-14 text-center text-paper lg:px-16 lg:py-20">
+            <div className="hero-grid absolute inset-0 opacity-60" aria-hidden />
+            <div className="relative mx-auto max-w-2xl">
+              <span className="eyebrow eyebrow-light">Langkah Berikutnya</span>
+              <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl">
+                Siap menemukan properti yang tepat?
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-paper/65">
+                Tim Prime Property siap membantu Anda menemukan ruko atau villa
+                yang sesuai kebutuhan dan anggaran.
+              </p>
+              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Link href="/kontak" className={buttonClasses("primary", "lg")}>
+                  <Icon.WhatsApp className="h-4 w-4" />
+                  Hubungi via WhatsApp
+                </Link>
+                <Link
+                  href="/properti"
+                  className={buttonClasses("outline-light", "lg")}
+                >
+                  Jelajahi Properti
+                </Link>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
     </PublicShell>
+  );
+}
+
+// Brand-story visual for the about preview (bundled scene).
+function HeroAbout() {
+  return (
+    <div className="relative aspect-[16/11] w-full">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/properties/p09.jpg"
+        alt="Properti premium Prime Property"
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-gradient-to-tr from-ink/70 via-ink/10 to-transparent" />
+    </div>
   );
 }

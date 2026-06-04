@@ -5,6 +5,7 @@ import { COMPANY } from "@/lib/constants";
 
 const NAV = [
   { href: "/", label: "Beranda" },
+  { href: "/properti", label: "Properti" },
   { href: "/tentang-kami", label: "Tentang Kami" },
   { href: "/kontak", label: "Kontak" },
 ];

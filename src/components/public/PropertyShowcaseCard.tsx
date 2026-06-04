@@ -1,81 +1,112 @@
 import Link from "next/link";
 import { StatusBadge } from "@/components/ui/Badge";
+import { PropertyImage } from "@/components/ui/PropertyImage";
+import { Icon } from "@/components/icons";
 import {
-  formatArea,
   formatDimensions,
   formatHadap,
   formatRupiah,
   formatTingkat,
 } from "@/lib/format";
 import { TIPE_LABEL } from "@/lib/constants";
+import { imageForProperty, resolvePropertyImage } from "@/lib/images";
 import type { Property } from "@/lib/types";
 
-function Spec({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <dt className="text-[11px] uppercase tracking-wider text-muted-soft">
-        {label}
-      </dt>
-      <dd className="mt-0.5 text-sm font-medium text-ink">{value}</dd>
-    </div>
-  );
-}
-
-export function PropertyShowcaseCard({ property }: { property: Property }) {
+export function PropertyShowcaseCard({
+  property,
+  eager = false,
+}: {
+  property: Property;
+  eager?: boolean;
+}) {
   return (
     <Link
-      href={`/kontak?properti=${encodeURIComponent(property.nama_property)}`}
-      className="card-lift group relative flex flex-col rounded-lg border border-line bg-paper p-6 hover:border-gold/50"
+      href={`/properti/${property.id}`}
+      className="card-lift group flex flex-col overflow-hidden rounded-xl border border-line bg-paper hover:border-gold/40"
     >
-      {/* top gold accent on hover */}
-      <span
-        className="absolute inset-x-6 top-0 h-px origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
-        aria-hidden
-      />
-
-      <div className="flex items-center justify-between">
-        <span className="eyebrow text-[11px]">{TIPE_LABEL[property.tipe]}</span>
-        <StatusBadge status={property.status} />
+      {/* Image */}
+      <div className="relative">
+        <PropertyImage
+          src={resolvePropertyImage(property)}
+          fallback={imageForProperty(property.tipe, property.id)}
+          alt={property.nama_property}
+          eager={eager}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="aspect-[4/3] w-full"
+          imgClassName="group-hover:scale-[1.04]"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"
+          aria-hidden
+        />
+        <div className="absolute left-3 top-3 flex items-center gap-2">
+          <StatusBadge status={property.status} className="shadow-sm" />
+        </div>
+        <div className="absolute right-3 top-3">
+          <span className="rounded-full border border-paper/25 bg-ink/55 px-2.5 py-0.5 text-xs font-medium text-paper backdrop-blur-sm">
+            {TIPE_LABEL[property.tipe]}
+          </span>
+        </div>
+        <div className="absolute bottom-3 left-3 flex items-center gap-1.5 text-paper">
+          <Icon.MapPin className="h-4 w-4 text-gold-bright" />
+          <span className="text-sm font-medium drop-shadow">
+            {property.kawasan[0]}
+            {property.kawasan.length > 1 ? ` +${property.kawasan.length - 1}` : ""}
+          </span>
+        </div>
       </div>
 
-      <h3 className="mt-3 font-display text-2xl leading-tight text-ink">
-        {property.nama_property}
-      </h3>
-      <p className="mt-1 text-sm text-muted">
-        {property.kawasan.join(" · ")}
-        {property.group ? ` — ${property.group}` : ""}
-      </p>
+      {/* Body */}
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="font-display text-xl leading-tight text-ink transition-colors group-hover:text-gold-deep">
+          {property.nama_property}
+        </h3>
+        <p className="mt-1 text-sm text-muted">
+          {property.group ? `${property.group} · ` : ""}
+          {property.kawasan.join(", ")}
+        </p>
 
-      <div className="my-5 h-px bg-line" aria-hidden />
+        <dl className="mt-4 grid grid-cols-3 gap-2 border-y border-line py-3 text-center">
+          <div>
+            <dt className="text-[10px] uppercase tracking-wider text-muted-soft">
+              Luas
+            </dt>
+            <dd className="tnum mt-0.5 text-[13px] font-medium text-ink">
+              {formatDimensions(property.lebar, property.panjang)}
+            </dd>
+          </div>
+          <div className="border-x border-line">
+            <dt className="text-[10px] uppercase tracking-wider text-muted-soft">
+              Tingkat
+            </dt>
+            <dd className="mt-0.5 text-[13px] font-medium text-ink">
+              {formatTingkat(property.tingkat)}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-[10px] uppercase tracking-wider text-muted-soft">
+              Hadap
+            </dt>
+            <dd className="mt-0.5 text-[13px] font-medium text-ink">
+              {formatHadap(property.hadap)}
+            </dd>
+          </div>
+        </dl>
 
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-4">
-        <Spec
-          label="Dimensi"
-          value={formatDimensions(property.lebar, property.panjang)}
-        />
-        <Spec
-          label="Luas Tanah"
-          value={formatArea(property.lebar, property.panjang)}
-        />
-        <Spec label="Tingkat" value={formatTingkat(property.tingkat)} />
-        <Spec label="Hadap" value={formatHadap(property.hadap)} />
-      </dl>
-
-      <div className="mt-6 flex items-end justify-between border-t border-line pt-5">
-        <div>
-          <p className="text-[11px] uppercase tracking-wider text-muted-soft">
-            Harga
-          </p>
-          <p className="tnum mt-0.5 text-lg font-semibold text-ink">
-            {formatRupiah(property.price)}
-          </p>
+        <div className="mt-4 flex items-end justify-between">
+          <div>
+            <p className="text-[10px] uppercase tracking-wider text-muted-soft">
+              Harga
+            </p>
+            <p className="tnum text-lg font-semibold text-ink">
+              {formatRupiah(property.price)}
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-1.5 rounded-lg bg-ink px-3 py-2 text-xs font-semibold text-paper transition-colors group-hover:bg-gold group-hover:text-ink">
+            Lihat Detail
+            <Icon.ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </span>
         </div>
-        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-gold-deep transition-colors group-hover:text-gold">
-          Tanya
-          <svg viewBox="0 0 20 20" fill="none" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5">
-            <path d="M4 10h11M11 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </span>
       </div>
     </Link>
   );

@@ -72,7 +72,10 @@ Di halaman login tersedia tombol isi-otomatis untuk kedua akun.
 
 **Publik**
 
-- `/` — Landing (hero, properti unggulan, mengapa Prime Property)
+- `/` — Landing (hero marketplace + quick search, properti unggulan, mengapa,
+  about preview, CTA)
+- `/properti` — Marketplace: grid properti + filter, pencarian, sort, paginasi
+- `/properti/[id]` — Detail properti publik (gambar, informasi harga, CTA)
 - `/tentang-kami` — Profil, visi, misi, nilai
 - `/kontak` — Info kontak + form (validasi & toast) + peta
 
@@ -104,6 +107,16 @@ Di halaman login tersedia tombol isi-otomatis untuk kedua akun.
 > build, sehingga emblem direkonstruksi sebagai SVG vektor yang setia pada DNA
 > brand (bilah emas naik, garis merah kembar, puncak/“P” hitam). Untuk mengganti
 > dengan aset final, ganti isi `Logomark.tsx`/`favicon.svg`.
+
+## 🖼️ Imagery & loading screen
+
+- **Visual properti (display-only, bukan upload):** field `imageUrl` pada data.
+  16 visual real-estate premium di-_generate_ dan dibundel di
+  `public/properties/` agar selalu tampil. `src/lib/images.ts`
+  (`resolvePropertyImage`) memilih `imageUrl` bila ada, lalu fallback ke visual
+  bundel sesuai tipe. Untuk produksi, set `imageUrl` ke CDN foto nyata.
+- **Loading screen:** `LoadingScreen` tampil sekali per sesi (sessionStorage),
+  latar gelap + animasi emas + logo, lalu memudar halus.
 
 ## 🧱 Model data properti
 
