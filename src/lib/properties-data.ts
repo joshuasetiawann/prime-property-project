@@ -1,4 +1,5 @@
 import type { Hadap, Property, Siap, Status, Tipe } from "./types";
+import { imageForProperty } from "./images";
 
 // =========================================================================
 // Deterministic seed data — 60 realistic listings.
@@ -191,6 +192,7 @@ export function seedProperties(): Property[] {
       maps_link,
       kawasan,
       unit,
+      imageUrl: imageForProperty(tipe, `PRP-${i}-${baseName}`),
       created_at: new Date(created).toISOString(),
       updated_at: new Date(updated).toISOString(),
       created_by: pick(rng, CREATORS),

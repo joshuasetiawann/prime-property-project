@@ -54,6 +54,7 @@ export function coercePropertyInput(raw: Record<string, unknown>): PropertyInput
       ? (raw.kawasan.filter((k) => typeof k === "string") as string[])
       : [],
     unit: strOrNull(raw.unit),
+    imageUrl: strOrNull(raw.imageUrl),
   };
 }
 

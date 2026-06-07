@@ -33,6 +33,7 @@ interface FormState {
   carport: boolean;
   maps_link: string;
   unit: string;
+  imageUrl: string;
 }
 
 function fromProperty(p?: Property): FormState {
@@ -51,6 +52,7 @@ function fromProperty(p?: Property): FormState {
     carport: p?.carport ?? false,
     maps_link: p?.maps_link ?? "",
     unit: p?.unit ?? "",
+    imageUrl: p?.imageUrl ?? "",
   };
 }
 
@@ -69,6 +71,7 @@ const CHANGE_KEYS = [
   "maps_link",
   "kawasan",
   "unit",
+  "imageUrl",
 ] as const;
 
 function Section({
@@ -479,6 +482,20 @@ export function PropertyForm({
             onChange={(e) => set("maps_link", e.target.value)}
             onBlur={() => blur("maps_link")}
             placeholder="https://www.google.com/maps/…"
+          />
+        </Field>
+
+        <Field
+          label="URL Gambar"
+          htmlFor="imageUrl"
+          hint="Opsional · biarkan kosong untuk memakai visual bawaan sesuai tipe"
+          className="sm:col-span-2"
+        >
+          <Input
+            id="imageUrl"
+            value={form.imageUrl}
+            onChange={(e) => set("imageUrl", e.target.value)}
+            placeholder="https://… atau /properties/p01.jpg"
           />
         </Field>
       </Section>

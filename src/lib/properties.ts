@@ -41,6 +41,20 @@ export function countActiveProperties(): number {
   return getStore().properties.filter((p) => !p.deleted_at).length;
 }
 
+/** Other live listings in the same kawasan/tipe — for the public detail page. */
+export function getRelatedProperties(property: Property, limit = 3): Property[] {
+  return getStore()
+    .properties.filter(
+      (p) =>
+        !p.deleted_at &&
+        p.id !== property.id &&
+        (p.tipe === property.tipe ||
+          p.kawasan.some((k) => property.kawasan.includes(k)))
+    )
+    .sort((a, b) => +new Date(b.created_at) - +new Date(a.created_at))
+    .slice(0, limit);
+}
+
 function nextId(): string {
   const store = getStore();
   let max = 0;
@@ -95,6 +109,7 @@ const FIELD_LABEL: Record<string, string> = {
   maps_link: "Maps Link",
   kawasan: "Kawasan",
   unit: "Unit",
+  imageUrl: "Gambar",
 };
 
 function displayValue(field: string, value: unknown): string {
@@ -140,6 +155,7 @@ function diffProperty(prev: Property, input: PropertyInput): AuditChange[] {
     "maps_link",
     "kawasan",
     "unit",
+    "imageUrl",
   ];
   for (const key of keys) {
     const before = JSON.stringify(prev[key] ?? null);

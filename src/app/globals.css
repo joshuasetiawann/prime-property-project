@@ -271,6 +271,26 @@
   }
 }
 
+/* Image loading skeleton */
+.skeleton {
+  background: linear-gradient(
+    100deg,
+    var(--color-mist-deep) 30%,
+    var(--color-mist) 50%,
+    var(--color-mist-deep) 70%
+  );
+  background-size: 200% 100%;
+  animation: prime-skeleton 1.5s ease-in-out infinite;
+}
+@keyframes prime-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 /* =========================================================================
    Motion
    ========================================================================= */
@@ -323,6 +343,23 @@
 @keyframes prime-shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+@keyframes prime-load {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+@keyframes prime-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
   }
 }
 

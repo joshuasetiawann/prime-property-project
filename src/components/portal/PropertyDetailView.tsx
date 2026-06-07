@@ -1,4 +1,6 @@
 import { SiapBadge, StatusBadge, TipeBadge } from "@/components/ui/Badge";
+import { PropertyImage } from "@/components/ui/PropertyImage";
+import { imageForProperty, resolvePropertyImage } from "@/lib/images";
 import { Icon } from "@/components/icons";
 import {
   formatArea,
@@ -50,6 +52,20 @@ function Group({
 export function PropertyDetailView({ property }: { property: Property }) {
   return (
     <div className="space-y-8">
+      {/* Image banner */}
+      <div className="relative overflow-hidden rounded-xl border border-line">
+        <PropertyImage
+          src={resolvePropertyImage(property)}
+          fallback={imageForProperty(property.tipe, property.id)}
+          alt={property.nama_property}
+          className="aspect-[16/9] w-full"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/30 to-transparent"
+          aria-hidden
+        />
+      </div>
+
       {/* Price + badges header */}
       <div className="rounded-xl border border-line bg-mist/40 p-5">
         <div className="flex flex-wrap items-center gap-2">

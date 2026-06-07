@@ -28,6 +28,7 @@ export interface Property {
   maps_link: string | null;
   kawasan: string[]; // multi-tag
   unit: string | null;
+  imageUrl: string | null; // display-only marketplace visual (not an upload)
   created_at: string; // ISO timestamp
   updated_at: string; // ISO timestamp
   created_by: string; // user display name
@@ -50,6 +51,7 @@ export interface PropertyInput {
   maps_link: string | null;
   kawasan: string[];
   unit: string | null;
+  imageUrl: string | null;
 }
 
 export interface User {
