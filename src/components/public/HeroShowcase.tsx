@@ -13,15 +13,15 @@ export function HeroShowcase({
   secondary: Property;
 }) {
   return (
-    <div className="relative">
+    <div className="relative isolate max-w-full overflow-hidden rounded-2xl sm:overflow-visible sm:rounded-none">
       {/* glow */}
       <div
-        className="absolute -inset-6 rounded-[2rem] bg-gold/10 blur-3xl"
+        className="absolute inset-0 rounded-[1.5rem] bg-gold/10 blur-2xl sm:-inset-6 sm:rounded-[2rem] sm:blur-3xl"
         aria-hidden
       />
 
       {/* Primary card */}
-      <div className="relative overflow-hidden rounded-2xl border border-paper/10 shadow-lg">
+      <div className="relative max-w-full overflow-hidden rounded-2xl border border-paper/10 shadow-lg">
         <PropertyImage
           src={resolvePropertyImage(primary)}
           fallback={imageForProperty(primary.tipe, primary.id)}
@@ -34,26 +34,26 @@ export function HeroShowcase({
           aria-hidden
         />
         {/* verified pill */}
-        <div className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-ink/70 px-3 py-1.5 text-xs font-semibold text-gold-bright backdrop-blur">
-          <Icon.ShieldCheck className="h-4 w-4" />
+        <div className="absolute right-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-1.5 rounded-full border border-gold/40 bg-ink/70 px-2.5 py-1.5 text-[11px] font-semibold text-gold-bright backdrop-blur sm:right-4 sm:top-4 sm:px-3 sm:text-xs">
+          <Icon.ShieldCheck className="h-4 w-4 shrink-0" />
           Legalitas Terverifikasi
         </div>
         {/* info bar */}
-        <div className="absolute inset-x-0 bottom-0 p-5">
+        <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
           <span className="text-[11px] font-semibold uppercase tracking-widest text-gold-bright">
             {TIPE_LABEL[primary.tipe]} · {primary.kawasan[0]}
           </span>
-          <h3 className="mt-1 font-display text-2xl text-paper">
+          <h3 className="mt-1 font-display text-xl leading-tight text-paper sm:text-2xl">
             {primary.nama_property}
           </h3>
-          <p className="tnum mt-1 text-lg font-semibold text-paper">
+          <p className="tnum mt-1 text-base font-semibold text-paper sm:text-lg">
             {formatRupiah(primary.price)}
           </p>
         </div>
       </div>
 
       {/* Secondary floating card */}
-      <div className="absolute -bottom-8 -left-8 hidden w-48 overflow-hidden rounded-xl border border-paper/15 shadow-lg sm:block">
+      <div className="absolute bottom-5 left-5 hidden w-44 overflow-hidden rounded-xl border border-paper/15 shadow-lg sm:block lg:-bottom-8 lg:-left-8 lg:w-48">
         <PropertyImage
           src={resolvePropertyImage(secondary)}
           fallback={imageForProperty(secondary.tipe, secondary.id)}

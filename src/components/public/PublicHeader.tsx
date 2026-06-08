@@ -57,10 +57,10 @@ export function PublicHeader({ overlay = false }: { overlay?: boolean }) {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
       )}
 
-      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
+      <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-20 sm:gap-6 sm:px-8 lg:px-10">
         {/* Logo */}
-        <div className="lg:hidden">
-          <LogoLink tone={tone} size="md" />
+        <div className="min-w-0 lg:hidden">
+          <LogoLink tone={tone} size="sm" className="max-w-[13.5rem] sm:max-w-none" />
         </div>
         <div className="hidden lg:block">
           <LogoLink tone={tone} size="lg" />
@@ -100,7 +100,7 @@ export function PublicHeader({ overlay = false }: { overlay?: boolean }) {
         </nav>
 
         {/* Right CTAs */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-2.5">
           <Link
             href="/agent/login"
             className={cn(
@@ -127,7 +127,7 @@ export function PublicHeader({ overlay = false }: { overlay?: boolean }) {
             aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
             aria-expanded={menuOpen}
             className={cn(
-              "inline-flex h-11 w-11 items-center justify-center rounded-lg border transition-colors lg:hidden",
+              "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-colors sm:h-11 sm:w-11 lg:hidden",
               isDark
                 ? "border-paper/20 text-paper hover:bg-paper/10"
                 : "border-line text-ink hover:bg-mist"
@@ -153,7 +153,7 @@ export function PublicHeader({ overlay = false }: { overlay?: boolean }) {
       {menuOpen && (
         <div className="animate-fade border-t border-line bg-paper lg:hidden">
           <nav
-            className="mx-auto flex max-w-7xl flex-col px-5 py-4 sm:px-8"
+            className="mx-auto flex max-w-7xl flex-col px-4 py-4 sm:px-8"
             aria-label="Navigasi seluler"
           >
             {NAV.map((item) => (
@@ -174,7 +174,7 @@ export function PublicHeader({ overlay = false }: { overlay?: boolean }) {
                 )}
               </Link>
             ))}
-            <div className="mt-3 grid grid-cols-2 gap-2.5">
+            <div className="mt-3 grid grid-cols-1 gap-2.5 min-[380px]:grid-cols-2">
               <Link
                 href="/agent/login"
                 onClick={() => setMenuOpen(false)}

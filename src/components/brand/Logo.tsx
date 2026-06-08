@@ -31,13 +31,13 @@ function Wordmark({
   return (
     <span
       className={cn(
-        "flex flex-col leading-none select-none",
+        "flex min-w-0 flex-col leading-none select-none",
         align === "center" ? "items-center" : "items-start"
       )}
     >
       <span
         className={cn(
-          "font-semibold tracking-[0.18em]",
+          "truncate font-semibold tracking-[0.18em]",
           s.prime,
           inkText
         )}
@@ -97,7 +97,7 @@ export function Logo({
   }
 
   return (
-    <span className={cn("flex items-center", s.gap, className)}>
+    <span className={cn("flex min-w-0 items-center", s.gap, className)}>
       <Logomark tone={tone} title={title} height={s.mark} />
       <Wordmark tone={tone} size={size} />
     </span>
@@ -123,7 +123,7 @@ export function LogoLink({
       href={href}
       aria-label="Prime Property — Beranda"
       className={cn(
-        "inline-flex items-center rounded-sm transition-opacity duration-300 hover:opacity-90",
+        "inline-flex min-w-0 items-center rounded-sm transition-opacity duration-300 hover:opacity-90",
         className
       )}
     >
