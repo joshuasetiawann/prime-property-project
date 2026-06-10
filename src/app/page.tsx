@@ -52,52 +52,52 @@ export default function LandingPage() {
       <section className="grain relative isolate overflow-hidden bg-ink text-paper">
         <div className="hero-grid absolute inset-0" aria-hidden />
         <div
-          className="pointer-events-none absolute -left-40 top-0 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute left-0 top-0 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-gold/10 blur-3xl sm:h-[32rem] sm:w-[32rem]"
           aria-hidden
         />
 
-        <Container size="wide" className="relative pb-28 pt-32 sm:pt-36 lg:pb-36">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <Container size="wide" className="relative pb-24 pt-24 sm:pb-28 sm:pt-36 lg:pb-36">
+          <div className="grid min-w-0 items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
             {/* Copy */}
-            <div>
-              <div className="animate-fade-up mb-6 flex items-center gap-3">
-                <span className="gold-rule-left" aria-hidden />
-                <span className="eyebrow eyebrow-light">
+            <div className="min-w-0">
+              <div className="animate-fade-up mb-5 flex min-w-0 items-center gap-3 sm:mb-6">
+                <span className="gold-rule-left hidden shrink-0 min-[380px]:block" aria-hidden />
+                <span className="eyebrow eyebrow-light min-w-0 text-[0.62rem] min-[380px]:text-[0.68rem] sm:text-[0.72rem]">
                   Marketplace Properti Premium · Medan
                 </span>
               </div>
 
-              <h1 className="animate-fade-up delay-1 font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl lg:text-[4.2rem]">
+              <h1 className="animate-fade-up delay-1 font-display text-[2.7rem] leading-[1.05] tracking-tight min-[390px]:text-5xl sm:text-6xl lg:text-[4.2rem]">
                 Temukan Properti{" "}
                 <span className="text-gold-gradient">Premium</span> Pilihan Anda.
               </h1>
 
-              <p className="animate-fade-up delay-2 mt-6 max-w-xl text-lg leading-relaxed text-paper/70">
+              <p className="animate-fade-up delay-2 mt-5 max-w-xl text-base leading-relaxed text-paper/70 sm:mt-6 sm:text-lg">
                 Jelajahi koleksi ruko dan villa eksklusif di kawasan paling
                 diminati—dikurasi dengan teliti, lengkap dengan harga
                 transparan dan pendampingan agen profesional.
               </p>
 
-              <div className="animate-fade-up delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/properti" className={buttonClasses("primary", "lg")}>
+              <div className="animate-fade-up delay-3 mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
+                <Link href="/properti" className={buttonClasses("primary", "lg", "w-full sm:w-auto")}>
                   Lihat Properti
                   <Icon.ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/kontak"
-                  className={buttonClasses("outline-light", "lg")}
+                  className={buttonClasses("outline-light", "lg", "w-full sm:w-auto")}
                 >
                   Hubungi Kami
                 </Link>
               </div>
 
-              <dl className="animate-fade-up delay-4 mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-paper/10 pt-8">
+              <dl className="animate-fade-up delay-4 mt-10 grid max-w-lg grid-cols-3 gap-3 border-t border-paper/10 pt-6 min-[390px]:gap-4 sm:mt-12 sm:gap-6 sm:pt-8">
                 {TRUST.map((s) => (
                   <div key={s.label}>
-                    <dt className="font-display text-3xl text-gold sm:text-4xl">
+                    <dt className="font-display text-2xl text-gold min-[390px]:text-3xl sm:text-4xl">
                       {s.value}
                     </dt>
-                    <dd className="mt-1 text-xs uppercase tracking-wider text-paper/55">
+                    <dd className="mt-1 text-[10px] uppercase leading-snug tracking-wide text-paper/55 min-[390px]:text-xs min-[390px]:tracking-wider">
                       {s.label}
                     </dd>
                   </div>
@@ -106,7 +106,7 @@ export default function LandingPage() {
             </div>
 
             {/* Visual */}
-            <div className="animate-fade-up delay-2 lg:pl-6">
+            <div className="animate-fade-up delay-2 min-w-0 lg:pl-6">
               {featured.length >= 2 && (
                 <HeroShowcase primary={featured[0]} secondary={featured[1]} />
               )}
@@ -147,7 +147,7 @@ export default function LandingPage() {
             />
             <Link
               href="/properti"
-              className={buttonClasses("outline", "md") + " shrink-0"}
+              className={buttonClasses("outline", "md", "w-full shrink-0 sm:w-auto")}
             >
               Lihat Semua ({active})
               <Icon.ArrowRight className="h-4 w-4" />
@@ -241,7 +241,7 @@ export default function LandingPage() {
       {/* ============================ CTA BAND ========================= */}
       <section className="bg-paper">
         <Container size="wide" className="py-16 lg:py-20">
-          <div className="grain relative isolate overflow-hidden rounded-3xl bg-ink px-8 py-14 text-center text-paper lg:px-16 lg:py-20">
+          <div className="grain relative isolate overflow-hidden rounded-2xl bg-ink px-5 py-12 text-center text-paper sm:rounded-3xl sm:px-8 sm:py-14 lg:px-16 lg:py-20">
             <div className="hero-grid absolute inset-0 opacity-60" aria-hidden />
             <div className="relative mx-auto max-w-2xl">
               <span className="eyebrow eyebrow-light">Langkah Berikutnya</span>
@@ -253,13 +253,13 @@ export default function LandingPage() {
                 yang sesuai kebutuhan dan anggaran.
               </p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link href="/kontak" className={buttonClasses("primary", "lg")}>
+                <Link href="/kontak" className={buttonClasses("primary", "lg", "w-full sm:w-auto")}>
                   <Icon.WhatsApp className="h-4 w-4" />
                   Hubungi via WhatsApp
                 </Link>
                 <Link
                   href="/properti"
-                  className={buttonClasses("outline-light", "lg")}
+                  className={buttonClasses("outline-light", "lg", "w-full sm:w-auto")}
                 >
                   Jelajahi Properti
                 </Link>

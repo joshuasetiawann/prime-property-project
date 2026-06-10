@@ -113,7 +113,7 @@ export function PublicFooter() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-paper/10 pt-7 text-xs text-paper/45 sm:flex-row">
           <p>© 2026 Prime Property. All rights reserved.</p>
-          <p className="flex items-center gap-2">
+          <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center sm:justify-end">
             <span>{COMPANY.legalName}</span>
             <span aria-hidden className="text-paper/25">·</span>
             <span>{COMPANY.hours}</span>

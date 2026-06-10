@@ -90,12 +90,20 @@
   }
 
   html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
   }
 
   body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
@@ -124,6 +132,13 @@
 
   p {
     text-wrap: pretty;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
   }
 
   /* Numeric alignment for tables / prices */

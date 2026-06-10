@@ -34,7 +34,7 @@ export function QuickSearch() {
   return (
     <form
       onSubmit={submit}
-      className="grid grid-cols-1 gap-3 rounded-2xl border border-line bg-paper/95 p-4 shadow-lg backdrop-blur sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1.2fr_auto] lg:items-end lg:gap-4"
+      className="grid min-w-0 grid-cols-1 gap-3 rounded-2xl border border-line bg-paper/95 p-4 shadow-lg backdrop-blur sm:grid-cols-2 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1.2fr)_auto] lg:items-end lg:gap-4"
     >
       <div>
         <FieldLabel>Kawasan</FieldLabel>
@@ -70,7 +70,7 @@ export function QuickSearch() {
           />
         </div>
       </div>
-      <Button type="submit" size="lg" className="lg:px-7">
+      <Button type="submit" size="lg" className="w-full lg:w-auto lg:px-7">
         <Icon.Search className="h-4 w-4" />
         Cari Properti
       </Button>
