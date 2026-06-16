@@ -63,14 +63,6 @@ export function PublicFooter() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/agent/login"
-                  className="text-sm text-paper/70 transition-colors hover:text-gold"
-                >
-                  Login Agent
-                </Link>
-              </li>
             </ul>
           </nav>
 

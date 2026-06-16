@@ -102,15 +102,6 @@ export function PublicHeader({ overlay = false }: { overlay?: boolean }) {
         {/* Right CTAs */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-2.5">
           <Link
-            href="/agent/login"
-            className={cn(
-              buttonClasses(isDark ? "outline-light" : "outline", "sm"),
-              "hidden md:inline-flex"
-            )}
-          >
-            Login Agent
-          </Link>
-          <Link
             href="/kontak"
             className={cn(
               buttonClasses("primary", "sm"),
@@ -174,18 +165,11 @@ export function PublicHeader({ overlay = false }: { overlay?: boolean }) {
                 )}
               </Link>
             ))}
-            <div className="mt-3 grid grid-cols-1 gap-2.5 min-[380px]:grid-cols-2">
-              <Link
-                href="/agent/login"
-                onClick={() => setMenuOpen(false)}
-                className={buttonClasses("outline", "md")}
-              >
-                Login Agent
-              </Link>
+            <div className="mt-3">
               <Link
                 href="/kontak"
                 onClick={() => setMenuOpen(false)}
-                className={buttonClasses("primary", "md")}
+                className={cn(buttonClasses("primary", "md"), "w-full")}
               >
                 Hubungi Kami
               </Link>
