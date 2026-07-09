@@ -117,17 +117,19 @@ export function LoginForm({ next }: { next?: string }) {
                 setPassword(d.password);
                 setError("");
               }}
-              className="flex w-full items-center justify-between gap-3 rounded-md border border-line bg-paper px-3 py-2 text-left text-xs transition-colors hover:border-gold/50 hover:bg-gold-wash/40"
+              className="flex w-full min-w-0 items-center gap-3 rounded-md border border-line bg-paper px-3 py-2 text-left text-xs transition-colors hover:border-gold/50 hover:bg-gold-wash/40"
             >
-              <span className="flex items-center gap-2">
+              <span className="flex shrink-0 items-center gap-2">
                 {d.role === "Superadmin" ? (
-                  <Icon.Crown className="h-4 w-4 text-gold-deep" />
+                  <Icon.Crown className="h-4 w-4 shrink-0 text-gold-deep" />
                 ) : (
-                  <Icon.Shield className="h-4 w-4 text-muted" />
+                  <Icon.Shield className="h-4 w-4 shrink-0 text-muted" />
                 )}
                 <span className="font-medium text-ink">{d.role}</span>
               </span>
-              <span className="font-mono text-muted">{d.email}</span>
+              <span className="min-w-0 flex-1 truncate text-right font-mono text-muted">
+                {d.email}
+              </span>
             </button>
           ))}
         </div>
