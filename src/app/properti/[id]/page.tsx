@@ -82,9 +82,9 @@ export default async function PublicPropertyDetailPage({
             </span>
           </nav>
 
-          <div className="mt-6 grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-10">
+          <div className="mt-6 grid min-w-0 gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-10">
             {/* Left — image + details */}
-            <div>
+            <div className="min-w-0">
               <div className="relative overflow-hidden rounded-2xl border border-line">
                 <PropertyImage
                   src={resolvePropertyImage(property)}
@@ -149,7 +149,7 @@ export default async function PublicPropertyDetailPage({
             </div>
 
             {/* Right — price / info card (sticky) */}
-            <div>
+            <div className="min-w-0">
               <div className="lg:sticky lg:top-24">
                 <div className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
                   <div className="border-b border-line bg-ink p-6 text-paper">
@@ -168,7 +168,7 @@ export default async function PublicPropertyDetailPage({
 
                   <div className="p-6">
                     <p className="eyebrow">Informasi Harga</p>
-                    <p className="tnum mt-1.5 font-display text-4xl text-ink">
+                    <p className="tnum mt-1.5 break-words font-display text-[clamp(1.4rem,6vw,2.25rem)] leading-tight text-ink">
                       {formatRupiah(property.price)}
                     </p>
                     <p className="mt-2 text-xs text-muted">

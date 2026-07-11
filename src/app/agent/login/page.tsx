@@ -29,7 +29,7 @@ export default async function AgentLoginPage({
   const { next } = await searchParams;
 
   return (
-    <div className="grid min-h-screen lg:grid-cols-2">
+    <div className="grid min-h-screen w-full min-w-0 lg:grid-cols-2">
       {/* Brand panel */}
       <div className="grain relative isolate hidden flex-col justify-between overflow-hidden bg-ink p-12 text-paper lg:flex">
         <div className="hero-grid absolute inset-0 opacity-60" aria-hidden />
@@ -70,9 +70,9 @@ export default async function AgentLoginPage({
       </div>
 
       {/* Form panel */}
-      <div className="flex flex-col bg-paper">
-        <div className="flex items-center justify-between px-6 py-6 sm:px-10">
-          <div className="lg:hidden">
+      <div className="flex min-w-0 flex-col bg-paper">
+        <div className="flex min-w-0 items-center justify-between gap-3 px-6 py-6 sm:px-10">
+          <div className="min-w-0 lg:hidden">
             <Logo variant="full" tone="dark" size="sm" />
           </div>
           <Link
